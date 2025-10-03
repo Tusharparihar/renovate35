@@ -1,26 +1,25 @@
 {
-  "extends": ["config:base"],
-  "enabledManagers": ["terraform"],
-  "terraform": {
-    "enabled": true
-  },
-  "automerge": false,
-  "automergeType": "pr",
-  "branchConcurrentLimit": 5,
-  "prHourlyLimit": 10,
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base",
+    ":separateMultipleMajorReleases"
+  ],
   "prConcurrentLimit": 5,
-  "dependencyDashboard": true,
-  "recreateClosed": true,
   "packageRules": [
     {
-      "matchPackagePatterns": ["^azurerm$"],
-      "groupName": "Terraform azurerm provider updates",
-      "rangeStrategy": "minor"
-    },
+      "description": "Group ALL non-major Terraform updates together",
+      "matchManagers": ["terraform"],
+      "matchPackagePatterns": ["hashicorp/*"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"], 
+      "groupName": "All Terraform Patch and Minor Updates",
+      "automerge": false 
     {
-      "matchPackagePatterns": ["^random$"],
-      "groupName": "Terraform random provider updates",
-      "rangeStrategy": "minor"
+      "description": "Ensure Major updates are opened individually for sequential upgrades",
+      "matchManagers": ["terraform"],
+      "matchPackagePatterns": ["hashicorp/*"],
+      "matchUpdateTypes": ["major"],
+      "groupName": null, 
+      "automerge": false
     }
   ]
 }
