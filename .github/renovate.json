@@ -1,0 +1,33 @@
+{
+  "extends": ["config:base"],
+  "enabledManagers": ["terraform"],
+  "terraform": {
+    "enabled": true
+  },
+  "automerge": false,
+  "automergeType": "pr",
+  "branchConcurrentLimit": 5,
+  "prHourlyLimit": 10,
+  "prConcurrentLimit": 5,
+  "dependencyDashboard": true,
+  "recreateClosed": true,
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^azurerm$"],
+      "groupName": "Terraform azurerm provider updates",
+      "rangeStrategy": "minor",
+      "excludePackagePatterns": ["^azurerm$"],
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "matchPackagePatterns": ["^random$"],
+      "groupName": "Terraform random provider updates",
+      "rangeStrategy": "minor",
+      "matchUpdateTypes": ["minor", "patch"]
+    }
+  ],
+  "major": {
+    "enabled": true,
+    "groupName": "Terraform major upgrades"
+  }
+}
