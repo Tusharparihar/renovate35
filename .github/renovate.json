@@ -15,19 +15,12 @@
     {
       "matchPackagePatterns": ["^azurerm$"],
       "groupName": "Terraform azurerm provider updates",
-      "rangeStrategy": "minor",
-      "excludePackagePatterns": ["^azurerm$"],
-      "matchUpdateTypes": ["minor", "patch"]
+      "rangeStrategy": "minor"
     },
     {
       "matchPackagePatterns": ["^random$"],
       "groupName": "Terraform random provider updates",
-      "rangeStrategy": "minor",
-      "matchUpdateTypes": ["minor", "patch"]
+      "rangeStrategy": "minor"
     }
-  ],
-  "major": {
-    "enabled": true,
-    "groupName": "Terraform major upgrades"
-  }
+  ]
 }
